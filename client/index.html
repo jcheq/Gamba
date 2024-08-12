@@ -4,14 +4,13 @@
         <link rel="stylesheet" href="../client/css/styles.css">
         <!-- <meta itemprop=""> -->
         
+
+        
         <script>
             async function userProfile() {
                 try {
                     const res = await fetch('api/User');
-                    if (!res.ok) throw new Error('Network response was not ok');
                     const user = await res.json();
-
-
                     const users = document.getElementById('user-list');
 
                     user.forEach(userProfile => {
@@ -29,7 +28,7 @@
 
             
         </script>
-
+        <!-- Note to self that this is going to be a discord api call for username/nickname/etc -->
     </head>
 
     <body>
