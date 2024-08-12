@@ -1,0 +1,89 @@
+
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../client/css/styles.css">
+        <!-- <meta itemprop=""> -->
+        
+        <script>
+            async function userProfile() {
+                try {
+                    const res = await fetch('api/User');
+                    if (!res.ok) throw new Error('Network response was not ok');
+                    const user = await res.json();
+
+
+                    const users = document.getElementById('user-list');
+
+                    user.forEach(userProfile => {
+                        const li = document.createElement('li');
+                        li.textContent = `${userProfile.userID} ${userProfile.power}`;
+                        users.appendChild(li); 
+                    });
+                    
+                } catch (error) {
+                    console.error('Error fetching items:', error);
+                }
+                
+            }
+            window.onload = userProfile;
+
+            
+        </script>
+
+    </head>
+
+    <body>
+        <h1>Items from MongoDB</h1>
+        <ul id="user-list"></ul>
+        <!-- <script src="app.js"></script> -->
+        <!-- <div class="markdown-body">
+            <h1 style="text-shadow: 2px 2px 4px #000000;">
+                <img src="https://cdn.discordapp.com/avatars/235243456677543936/533e20dc79e875e2bab1b93bead5156b.png" alt="jcheq | PHH x777🍀" style="width:40px; height:40px; border-radius: 0%; margin-top:10px">
+                <span style=" ">
+                    jcheq | PHH x777🍀 [Total Power: 3672]            </span>
+    
+                <button style="border-color: rgb(211, 211, 211); background-color: rgb(78, 78, 214);" id="enablecards">Cards</button>
+                <button style="border-color: rgb(211, 211, 211); background-color: rgb(13, 17, 23);" id="enableweapons">Weapons</button>
+                <button style="border-color: rgb(211, 211, 211); background-color: rgb(13, 17, 23);" id="enableartifacts">Artifacts</button>
+                <button style="border-color: rgb(211, 211, 211); background-color: rgb(13, 17, 23);" id="enablecurrencies">System &amp; Consumables</button>
+                <button style="border-color: rgb(211, 211, 211); background-color: rgb(13, 17, 23);" id="enabledecks">Decks</button>
+                <button style="border-color: rgb(211, 211, 211); background-color: rgb(13, 17, 23);" id="hideall">None</button>
+    
+                <div class="input-container">
+                    <input type="text" id="search" placeholder="Search inventory by Username...">
+                    <div id="suggestions"></div>
+                </div>
+    
+                
+            </h1>
+            
+
+        </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <img src="https://i.imgur.com/gSlHoO9.png" style="position: fixed; right: 0; bottom: 0; width: 100%; height: 100%; z-index: -1; object-fit: fill; object-position: center;"> -->
+
+
+
+    </body>
+</html>
+
+

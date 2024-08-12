@@ -1,9 +1,10 @@
 const express = require('express');
 const path = require('path');
 const connectDB = require('./config/db');
-// const itemRoutes = require('./routes/itemRoutes'); // Import routes
+require("dotenv").config();
+const userRoutes = require('../server/routes/User'); // Import routes
 
-dotenv.config();
+// dotenv.config();
 
 const app = express();
 const port = 3000;
@@ -16,7 +17,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client'))); // Serve static files from frontend folder
 
 // Routes
-// app.use('/api/items', itemRoutes); // API routes
+app.use('/api/User', userRoutes); // API routes
 
 // Serve HTML files
 app.get('/', (req, res) => {
