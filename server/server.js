@@ -1,8 +1,9 @@
-const express = require('express');
-const path = require('path');
-const connectDB = require('./config/db');
+const express = require("express");
+const path = require("path");
+const connectDB = require("./config/db");
 require("dotenv").config();
-const userRoutes = require('../server/routes/User'); // Import routes
+const userRoutes = require("../server/routes/User"); // Import routes
+const inventoryRoute = require("../server/routes/CardInventory"); // Import routes
 
 // dotenv.config();
 
@@ -14,14 +15,15 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../client'))); // Serve static files from frontend folder
+app.use(express.static(path.join(__dirname, "../client"))); // Serve static files from frontend folder
 
 // Routes
-app.use('/api/User', userRoutes); // API routes
+app.use("/api/User", userRoutes); // API routes
+app.use("/api/inventory", inventoryRoute); // API routes
 
 // Serve HTML files
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/index.html"));
 });
 
 app.listen(port, () => {

@@ -1,22 +1,20 @@
 const mongoose = require("mongoose");
 
 const CardCollectionSchema = new mongoose.Schema({
-    userID: {
-        type: String,
-    },
-    
-    card: {
-        type: String,
-    },
+  userID: {
+    type: String,
+    required: true,
+  },
 
-    rarity: {
-        type: String,
+  cards: [
+    {
+      name: { type: String, required: true }, // name
+      rarity: { type: String, required: true }, // Rarity common/rare/etc
+      type: { type: String, required: true }, // Card type
+      amount: { type: Number, required: true }, // Amount is also part of the card object
+      description: String,
     },
+  ],
+});
 
-    amount: {
-        type: String,
-    },
-    
-  });
-  
-  module.exports = mongoose.model('CardCollections', CardCollectionSchema);
+module.exports = mongoose.model("CardCollections", CardCollectionSchema);
