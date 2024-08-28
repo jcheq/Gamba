@@ -18,11 +18,15 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "../client"))); // Serve static files from frontend folder
 
 // Routes
-app.use("/api/User", userRoutes); // API routes
+app.use("/api/user", userRoutes); // API routes
 app.use("/api/inventory", inventoryRoute); // API routes
 
 // Serve HTML files
-app.get("/", (req, res) => {
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/index.html"));
+// });
+
+app.get("/inventory/:userId", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/index.html"));
 });
 
