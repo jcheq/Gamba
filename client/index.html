@@ -3,26 +3,29 @@
     <head>
         <link rel="stylesheet" href="/css/styles.css">
         <!-- <meta itemprop=""> -->
-        <script src="../js/main.js" defer></script>
+        <script src="../js/inventory.js" defer></script>
     
         <!-- Note to self that this is going to be a discord api call for username/nickname/etc -->
     </head>
 
     <body>
-        <h1>Items from MongoDB</h1>
+        <h1>Inventory</h1>
         <!-- <ul id="user-list"></ul> -->
         <!-- <ul id="inventory-test"></ul> -->
-        <div>
-            <label for="rarity-filter">Filter by Rarity:</label>
-            <select id="rarity-filter">
-                <option value="all">All</option>
-                <option value="Rare">Rare</option>
-                <option value="Epic">Epic</option>
-                <option value="Legendary">Legendary</option>
-                <option value="Mythic">Mythic</option>
-            </select>
+        <div id="filter-buttons">
+            <button onclick="filterByElement('All')">All</button>
+            <button onclick="filterByElement('Light')">Light</button>
+            <button onclick="filterByElement('Dark')">Dark</button>
+            <button onclick="filterByElement('Fire')">Fire</button>
+            <button onclick="filterByElement('Water')">Water</button>
+            <button onclick="filterByElement('Earth')">Earth</button>
+            <button onclick="filterByElement('Wind')">Wind</button>
+            <!-- Add more buttons for other elements as needed -->
         </div>
-        <div class="inventory-container" id="inventory-container"></div>
+        <div class="markdown-body">
+            <div class="inventory-container" id="inventory-container"></div>
+        </div>
+        
         
             
         

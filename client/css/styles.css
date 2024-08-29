@@ -1,20 +1,138 @@
-#inventory-container {
+/* #inventory-container {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     justify-content: center;
+} */
+
+.inventory-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    overflow-y: auto;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.markdown-body {
+    color-scheme: dark;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    color: #c9d1d9;
+    font-family: Poppins, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.markdown-body h4 {
+    font-family: 'InventoryFont';
+    font-size: 18px;
+    text-align: center;
+    font-weight: 100;
+    width: calc(100% - 10px);
+    display: block;
+    text-shadow: 3px 3px 3px #00000075;
+    position: absolute;
+    bottom: 48px;
+    border-bottom: 1px solid #ffffff73;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
 }
 
 
 .card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    /* background-color: #f9f9f9; */
+    /* border: 1px solid #ddd; */
+    position: relative;
     border-radius: 10px;
-    padding: 10px;
-    width: 200px;               /* Set a fixed width for each card */
+    padding: 5px;
+    width: 220px;               /* Set a fixed width for each card */
+    height: 370px;
+    background-size: 100% 100%;
+    display: block;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+    transition: 0.3s;
+}
 
+.card:hover {
+    transform: rotateX(20deg) rotateY(10deg);
+    transition: 2s;
+}
+
+.cardimage {
+    width: 200px;
+    height: 280px;
+    float: left;
+    margin-right: 10px;
+    margin-top: 9px;
+    margin-left: 8px;
+    position: relative;
+}
+
+.cardstats img {
+    display: inline-block;
+    position: relative;
+    top: 10px;
+}
+
+
+/* h4 {
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+} */
+
+.cardstats {
+    position: absolute;
+    bottom: 65px;
+    width: 170px;
+    height: 70px;
+    padding-left: 35px;
+    text-align: right;
+}
+
+
+.cardelement {
+    position: absolute;
+    bottom: 84px;
+    left: 10px;
+    width: 42px;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+}
+
+.cardstats strong {
+    text-align: left;
+    background: #0d0d0db8;
+    display: inline-block;
+    margin: 5px -16px 5px 0px;
+    padding: 5px 5px 5px 10px;
+    width: 43px;
+    border-radius: 10px 10px 10px 10px;
+    font-weight: 800;
+    font-size: 14px;
+    border: 1px solid #ffffff2b;
+}
+
+#filter-buttons button.active {
+    background-color: #007bff;
+    color: white;
 }
 
 
