@@ -16,71 +16,103 @@
 //   }
 // }
 
-// async function card() {
-//   try {
-//     const res = await fetch("api/inventory/235243456677543936");
-//     if (!res.ok) throw new Error("Network response was not ok");
-//     const card = await res.json();
+document.addEventListener("DOMContentLoaded", function () {
+  // Extract userId from the URL
+  const pathArray = window.location.pathname.split("/");
+  const userId = pathArray[pathArray.length - 1]; // Get the last part of the URL, which is the userId
 
-//     const users = document.getElementById("inventory-test");
+  console.log("Fetching cards for userId:", userId); // Debugging
 
-//     card.forEach((cards) => {
-//       const li = document.createElement("li");
-//       li.textContent = `${cards.name}`;
-//       users.appendChild(li);
-//     });
-//   } catch (error) {
-//     console.error("Error fetching items:", error);
-//   }
-// }
+  // Fetch the user's card inventory
+  fetch(`/api/inventory/${userId}`)
+    .then((response) => response.json())
+    .then((inventory) => {
+      console.log(inventory);
+      if (inventory.error) {
+        document.getElementById(
+          "inventory-container"
+        ).innerHTML = `<p>${inventory.error}</p>`;
+      } else {
+        const sortedCards = sortCards(inventory.cards);
 
-function fetchUserCards(userId) {
-  fetch(`/inventory/${userId}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("No cards found for this user");
+        renderCards(sortedCards);
       }
-      return response.json();
     })
-    .then((data) => {
-      renderCards(data);
-    })
-    .catch((err) => {
-      console.error("Error:", err.message);
-      document.getElementById("inventory-container").innerText =
-        "No cards available for this user.";
+    .catch((error) => {
+      console.error("Error fetching cards:", error);
+      document.getElementById(
+        "inventory-container"
+      ).innerHTML = `<p>Failed to load cards.</p>`;
     });
+
+  document
+    .getElementById("rarity-filter")
+    .addEventListener("change", (event) => {
+      const selectedRarity = event.target.value;
+      filterCardsByRarity(selectedRarity);
+    });
+});
+
+function sortCards(cards) {
+  const rarityOrder = {
+    Unique: 1,
+    Weapon: 2,
+    Mythic: 3,
+    Legendary: 4,
+    Epic: 5,
+    Rare: 6,
+  };
+
+  return cards.sort((a, b) => {
+    // Sort by rarity using the rarityOrder object
+    if (rarityOrder[a.rarity] !== rarityOrder[b.rarity]) {
+      return rarityOrder[a.rarity] - rarityOrder[b.rarity];
+    }
+    // If rarities are the same, sort by amount (descending order)
+    if (b.amount !== a.amount) {
+      return b.amount - a.amount;
+    }
+    // If rarities and amounts are the same, sort by element (alphabetically)
+    if (a.element && b.element) {
+      return a.element.localeCompare(b.element);
+    }
+    // If an element is missing, it will appear last
+    return 0;
+  });
+}
+
+let allCards = [];
+// console.log(allCards);
+
+function filterCardsByRarity(rarity) {
+  const filteredCards = allCards.filter(
+    (card) => rarity === "all" || card.rarity === rarity
+  );
+  renderCards(filteredCards);
 }
 
 function renderCards(cards) {
   const container = document.getElementById("inventory-container");
-  container.innerHTML = ""; // Clear any existing cards
+  container.innerHTML = ""; // Clear previous content
+
+  //   if (cards.length === 0) {
+  //     container.innerHTML = "<p>No cards found for this user.</p>";
+  //     return;
+  //   }
+  //   console.log(cards);
 
   cards.forEach((card) => {
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
 
     cardElement.innerHTML = `
-            <img src="${card.imageUrl}" alt="${card.name}">
-            <div class="card-content">
-                <h2 class="card-title">${card.name}</h2>
-                <p class="card-subtitle">Type: ${card.type}</p>
-                <div class="card-rarity">${card.rarity}</div>
-                <p class="card-amount">Amount: ${card.amount}</p>
-            </div>
+            <h2>${card.name}</h2>
+            <p>Rarity: ${card.rarity}</p>
+            <p>Amount: ${card.amount}</p>
+            <p>Type: ${card.type}</p>
+       
         `;
 
     container.appendChild(cardElement);
   });
 }
-
-function filterCardsByRarity(cards, rarity) {
-  const filteredCards = cards.filter((card) => card.rarity === rarity);
-  renderCards(filteredCards);
-}
-
-// window.onload = function () {
-//   userProfile();
-//   fetchUserCards();
-//   renderCards();
-// };
