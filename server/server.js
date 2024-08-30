@@ -4,6 +4,7 @@ const connectDB = require("./config/db");
 require("dotenv").config();
 const userRoutes = require("../server/routes/User"); // Import routes
 const inventoryRoute = require("../server/routes/CardInventory"); // Import routes
+const discordProfile = require("../server/routes/discordProfile");
 
 // dotenv.config();
 
@@ -20,15 +21,21 @@ app.use(express.static(path.join(__dirname, "../client"))); // Serve static file
 // Routes
 app.use("/api/user", userRoutes); // API routes
 app.use("/api/inventory", inventoryRoute); // API routes
+app.use("/api/discordProfile", discordProfile);
 
 // Serve HTML files
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../client/index.html"));
 // });
 
+//only do this if u want to send custom url
 app.get("/inventory/:userId", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/index.html"));
 });
+
+// app.get("/discordProfile/:userId", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/index.html"));
+// });
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

@@ -1,19 +1,37 @@
-// const cardFunctions = require("../utils/cardFunctions");
-
 let allCards = [];
 
 document.addEventListener("DOMContentLoaded", function () {
   // Extract userId from the URL
   const pathArray = window.location.pathname.split("/");
   const userId = pathArray[pathArray.length - 1]; // Get the last part of the URL, which is the userId
-
+  // const guildId = dotenv.GUILD_ID;
   console.log("Fetching cards for userId:", userId); // Debugging
+  // console.log("Fetching id for guild:", guildId); // Debugging
+
+  //Fetch user profile
+  fetch(`/api/discordProfile/${userId}`)
+    .then((response) => response.json())
+    .then((user) => {
+      if (user.error) {
+        document.getElementById(
+          "profile-container"
+        ).innerHTML = `<p>${user.error}</p>`;
+      } else {
+        renderProfile(user);
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching profile:", error);
+      document.getElementById(
+        "profile-container"
+      ).innerHTML = `<p>Failed to load profile.</p>`;
+    });
 
   // Fetch the user's card inventory
   fetch(`/api/inventory/${userId}`)
     .then((response) => response.json())
     .then((inventory) => {
-      console.log(inventory);
+      // console.log(inventory);
       if (inventory.error) {
         document.getElementById(
           "inventory-container"
@@ -74,6 +92,28 @@ function filterByElement(element) {
   renderCards(filteredCards);
 }
 
+function renderProfile(user) {
+  const container = document.getElementById("profile-container");
+  container.innerHTML = ""; // Clear previous content
+
+  if (user.length === 0) {
+    container.innerHTML = "<p>No user found.</p>";
+    return;
+  }
+
+  const userProfile = document.createElement("div");
+  userProfile.classList.add("profile");
+
+  userProfile.innerHTML = `
+    <img src = "${user.avatarUrl}" alt= "${user.nickname}" style= "width:40px; height:40px; border-radius: 0%; vertical-align:bottom;">
+    <span>${user.nickname}'s Inventory</span>
+
+
+        `;
+
+  container.appendChild(userProfile);
+}
+
 function renderCards(cards) {
   const container = document.getElementById("inventory-container");
   container.innerHTML = ""; // Clear previous content
@@ -92,7 +132,7 @@ function renderCards(cards) {
     cardElement.style.backgroundImage = cardBackground(card.rarity);
 
     cardElement.innerHTML = `
-
+    
     <div class= "cardimage"> 
       <img class="advancementstarsbottom" src="https://nattobot.com/content/stars_5.png" alt="advancement stars">
       <img class="" src="https://nattobot.com/content/cards/104.png" data-src="https://nattobot.com/content/cards/104.png" alt="Card - "CatWoo"">
@@ -111,11 +151,6 @@ function renderCards(cards) {
 
     container.appendChild(cardElement);
   });
-
-  // <h2>${card.name}</h2>
-  //           <p>Rarity: ${card.rarity}</p>
-  //           <p>Amount: ${card.amount}</p>
-  //           <p>Type: ${card.type}</p>
 }
 
 function cardBackground(rarity) {
