@@ -135,7 +135,7 @@ function renderCards(cards) {
     
     <div class= "cardimage"> 
       <img class="advancementstarsbottom" src="https://nattobot.com/content/stars_5.png" alt="advancement stars">
-      <img class="" src="https://nattobot.com/content/cards/104.png" data-src="https://nattobot.com/content/cards/104.png" alt="Card - "CatWoo"">
+      <img class="" src="${card.image}">
     </div>
     <h4>${card.name}</h4>
     <div class= "cardstats"> 

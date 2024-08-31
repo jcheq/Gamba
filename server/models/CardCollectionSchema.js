@@ -12,6 +12,7 @@ const CardCollectionSchema = new mongoose.Schema({
       rarity: { type: String, required: true }, // Rarity common/rare/etc
       type: { type: String, required: true }, // Card type
       amount: { type: Number, required: true }, // Amount is also part of the card object
+      image: { type: String, required: true }, // Card image
       description: String,
     },
   ],
