@@ -147,6 +147,12 @@ h4 {
     text-align: right;
 }
 
+.cardstats img {
+    display: inline-block;
+    position: relative;
+    top: 10px;
+}
+
 
 .cardelement {
     position: absolute;
