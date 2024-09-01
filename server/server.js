@@ -36,6 +36,11 @@ app.get("/inventory/:userId", (req, res) => {
 // app.get("/discordProfile/:userId", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../client/index.html"));
 // });
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client", "index.html"));
+});
+
 app.use("/", (req, res) => {
   res.send("Running...");
 });
