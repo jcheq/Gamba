@@ -127,14 +127,19 @@ function renderCards(cards) {
   cards.forEach((card) => {
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
-    cardElement.setAttribute("data-amount", card.amount);
-    cardElement.setAttribute("data-type", card.type);
+    let starAmount = calcStar(card.amount);
+    let cardType = calcElement(card.type);
+    cardElement.setAttribute("data-star", starAmount);
+    cardElement.setAttribute("data-type", cardType);
+    cardElement.setAttribute("data-extra", card.type);
     cardElement.style.backgroundImage = cardBackground(card.rarity);
 
     cardElement.innerHTML = `
     
     <div class= "cardimage"> 
-      <img class="advancementstarsbottom" src="https://nattobot.com/content/stars_5.png" alt="advancement stars">
+      <img class="advancementstarsbottom" src="https://nattobot.com/content/stars_${cardElement.getAttribute(
+        `data-star`
+      )}.png" alt="advancement stars">
       <img class="" src="${card.image}">
     </div>
     <h4>${card.name}</h4>
@@ -144,7 +149,9 @@ function renderCards(cards) {
       <strong>20</strong>
       <img style="width:32px;" src="https://nattobot.com/content/hp.png" alt="hp">
     </div>
-    <img class="cardelement" src="https://nattobot.com/content/light.png?r=1" alt="element">
+    <img class="cardelement" src="https://nattobot.com/content/${cardElement.getAttribute(
+      `data-type`
+    )}.png?r=1" alt="element">
             
        
         `;
@@ -173,6 +180,56 @@ function cardBackground(rarity) {
       break;
     case `Rare`:
       url = `url(https://nattobot.com/content/uP2aXed_c.png)`;
+      break;
+  }
+  return url;
+}
+
+function calcStar(star) {
+  let advancement;
+  switch (true) {
+    case star === 1:
+      advancement = 1;
+      break;
+    case star === 2:
+      advancement = 2;
+      break;
+    case star === 3:
+      advancement = 3;
+      break;
+    case star === 4:
+      advancement = 4;
+      break;
+    case star >= 5: //5+
+      advancement = 5;
+      break;
+    default:
+      advancement = 0;
+      break;
+  }
+  return advancement;
+}
+
+function calcElement(type) {
+  let url;
+  switch (type) {
+    case "Light":
+      url = `light`;
+      break;
+    case `Dark`:
+      url = `dark`;
+      break;
+    case `Water`:
+      url = `water`;
+      break;
+    case `Fire`:
+      url = `fire`;
+      break;
+    case `Air`:
+      url = `wind`;
+      break;
+    case `Lightning`:
+      url = `lightning`;
       break;
   }
   return url;
