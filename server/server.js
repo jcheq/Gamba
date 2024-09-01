@@ -14,6 +14,10 @@ const port = 3000;
 // Database connection
 connectDB();
 
+app.use("/", (req, res) => {
+  res.send("Running...");
+});
+
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../client"))); // Serve static files from frontend folder
@@ -37,13 +41,9 @@ app.get("/inventory/:userId", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../client/index.html"));
 // });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client", "index.html"));
-});
-
-app.use("/", (req, res) => {
-  res.send("Running...");
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client", "index.html"));
+// });
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
