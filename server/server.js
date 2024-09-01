@@ -14,10 +14,6 @@ const port = 3000;
 // Database connection
 connectDB();
 
-app.use("/", (req, res) => {
-  res.send("Running...");
-});
-
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../client"))); // Serve static files from frontend folder
