@@ -83,6 +83,7 @@ button:hover {
     text-align: center;
     /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
     transition: 0.3s;
+    
 }
 
 .card:hover {
@@ -94,10 +95,14 @@ button:hover {
     width: 200px;
     height: 280px;
     float: left;
-    margin-right: 10px;
-    margin-top: 9px;
+    /* border:#c9d1d9;
+    border-radius: 15px; */
+    
+    margin-right: 12px;
+    margin-top: 12px;
     margin-left: 8px;
     position: relative;
+    
 }
 
 .cardimage img {
@@ -105,10 +110,35 @@ button:hover {
     height: 100%;
     background: #0000007a;
     padding: 2px;
-    border-radius: 3px 30px 30px 40px;
+    /* border-radius: 3px 30px 30px 40px; */
+    border-radius: 40px 15px 30px 30px; 
 }
 
 .cardimage .advancementstarsbottom {
+    position: absolute;
+    width: 120px;
+    height: 20px;
+    /* margin-top: 80px; */
+    display: flex;
+    top: 75px;
+    left: -60px;
+    /* left: 30px; */
+    /* right: 10px; */
+    border-radius: 0;
+    clip-path: none;
+    z-index: 1;
+    background: #0d0d0db8;
+    border: 1px solid #ffffff2b;
+    border-radius: 5px 5px;
+    padding-top: 4px;    /* Increase padding at the top */
+    padding-right: 5px;  /* Increase padding on the right */
+    padding-bottom: 5px; /* Increase padding at the bottom */
+    padding-left: 25px;   /* Increase padding on the left */
+    /* padding: 5px; */
+    transform: rotate(90deg);
+
+}
+/* .cardimage .advancementstarsbottom {
     position: absolute;
     width: 130px;
     height: 22px;
@@ -121,8 +151,7 @@ button:hover {
     border: 1px solid #ffffff2b;
     border-radius: 20px 0px;
     padding: 5px;
-}
-
+} */
 /* img {
     pointer-events: none;
 } */
@@ -144,7 +173,7 @@ h4 {
     width: 170px;
     height: 70px;
     padding-left: 35px;
-    text-align: right;
+    text-align: left;
 }
 
 .cardstats img {
@@ -156,8 +185,10 @@ h4 {
 
 .cardelement {
     position: absolute;
-    bottom: 84px;
-    left: 10px;
+    /* bottom: 84px; */
+    z-index: 2;
+    left: 6px;
+    top: 15px;
     width: 42px;
     text-align: center;
     color: white;
@@ -165,11 +196,11 @@ h4 {
 }
 
 .cardstats strong {
-    text-align: left;
+    text-align: right;
     background: #0d0d0db8;
     display: inline-block;
-    margin: 5px -16px 5px 0px;
-    padding: 5px 5px 5px 10px;
+    margin: 5px 5px 5px -28px;
+    padding: 2px 10px 2px 2px;
     width: 43px;
     border-radius: 10px 10px 10px 10px;
     font-weight: 800;

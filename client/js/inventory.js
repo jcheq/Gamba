@@ -144,10 +144,10 @@ function renderCards(cards) {
     </div>
     <h4>${card.name}</h4>
     <div class= "cardstats"> 
-      <strong>10</strong>
       <img style="width:32px;" src="https://nattobot.com/content/attack.png" alt="attack">
-      <strong>20</strong>
+      <strong>10</strong>
       <img style="width:32px;" src="https://nattobot.com/content/hp.png" alt="hp">
+      <strong>20</strong>
     </div>
     <img class="cardelement" src="https://nattobot.com/content/${cardElement.getAttribute(
       `data-type`
@@ -170,16 +170,16 @@ function cardBackground(rarity) {
       url = `url(https://nattobot.com/content/9yZM5ai_u.png)`;
       break;
     case `Mythic`:
-      url = `url(https://nattobot.com/content/9yZM5ai_u.png)`;
+      url = `url(https://i.imgur.com/0C7ZgUA.png)`;
       break;
     case `Legendary`:
       url = `url(https://nattobot.com/content/uP2aXed_c.png)`;
       break;
     case `Epic`:
-      url = `url(https://nattobot.com/content/uP2aXed_c.png)`;
+      url = `url(https://nattobot.com/content/9yZM5ai_u.png)`;
       break;
     case `Rare`:
-      url = `url(https://nattobot.com/content/uP2aXed_c.png)`;
+      url = `url(https://i.imgur.com/ynW1pGH.png)`;
       break;
   }
   return url;
@@ -189,22 +189,28 @@ function calcStar(star) {
   let advancement;
   switch (true) {
     case star === 1:
-      advancement = 1;
+      advancement = 0;
+      // advancement = `url(https://i.imgur.com/8JcjC51.png)`;
       break;
     case star === 2:
-      advancement = 2;
+      advancement = 1;
+      // advancement = `url(https://i.imgur.com/8JcjC51.png)`;
       break;
     case star === 3:
-      advancement = 3;
+      advancement = 2;
+      // advancement = `url(https://i.imgur.com/8JcjC51.png)`;
       break;
     case star === 4:
-      advancement = 4;
+      advancement = 3;
+      // advancement = `url(https://i.imgur.com/8JcjC51.png)`;
       break;
     case star >= 5: //5+
-      advancement = 5;
+      advancement = 4;
+      // advancement = `url(https://i.imgur.com/8JcjC51.png)`;
       break;
     default:
       advancement = 0;
+      // advancement = `url(https://i.imgur.com/8JcjC51.png)`;
       break;
   }
   return advancement;
