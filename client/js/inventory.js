@@ -164,24 +164,27 @@ function cardBackground(rarity) {
   let url;
   switch (rarity) {
     case "Unique":
-      url = `url(https://nattobot.com/content/9yZM5ai_u.png)`;
+      url = `url(https://i.imgur.com/I0IbZTD.png)`;
       break;
     case `Weapon`:
-      url = `url(https://nattobot.com/content/9yZM5ai_u.png)`;
+      url = `url(https://i.imgur.com/0C7ZgUA.png)`;
       break;
     case `Mythic`:
       url = `url(https://i.imgur.com/0C7ZgUA.png)`;
       break;
     case `Legendary`:
-      url = `url(https://nattobot.com/content/uP2aXed_c.png)`;
+      url = `url(https://i.imgur.com/Jz5BRGu.png)`;
       break;
     case `Epic`:
-      url = `url(https://nattobot.com/content/9yZM5ai_u.png)`;
+      url = `url(https://i.imgur.com/jiHIgoe.png)`;
       break;
     case `Rare`:
-      url = `url(https://i.imgur.com/ynW1pGH.png)`;
+      url = `url(https://i.imgur.com/zFTXc1J.png)`;
       break;
   }
+  //Mythic was https://nattobot.com/content/9yZM5ai_u.png
+
+  //Legendary was https://nattobot.com/content/uP2aXed_c.png
   return url;
 }
 
