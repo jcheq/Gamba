@@ -182,9 +182,7 @@ function cardBackground(rarity) {
       url = `url(https://i.imgur.com/zFTXc1J.png)`;
       break;
   }
-  //Mythic was https://nattobot.com/content/9yZM5ai_u.png
 
-  //Legendary was https://nattobot.com/content/uP2aXed_c.png
   return url;
 }
 
